@@ -42,4 +42,9 @@ public class PostRestController {
     public Post update(@PathVariable String id, @RequestBody Post post) {
         return postService.update(id, post);
     }
+
+    @GetMapping("/hello")
+    public String hello() { 
+        return "Hello, World!";
+    }
 }
