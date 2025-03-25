@@ -1,0 +1,34 @@
+### Test public access (no authentication required)
+GET http://localhost:8080/index.html
+
+### Test USER role access
+GET http://localhost:8080/user.html
+Authorization: Basic user:user
+
+### Test ADMIN role access
+GET http://localhost:8080/user.html
+Authorization: Basic admin:admin
+
+### Test SUPERADMIN role access
+GET http://localhost:8080/user.html
+Authorization: Basic superadmin:superadmin
+
+### Test ADMIN only access
+GET http://localhost:8080/admin_only.html
+Authorization: Basic admin:admin
+
+### Test SUPERADMIN access to admin page
+GET http://localhost:8080/admin.html
+Authorization: Basic superadmin:superadmin
+
+### Test SUPERADMIN only access
+GET http://localhost:8080/superuser.html
+Authorization: Basic superadmin:superadmin
+
+### Test unauthorized access (should fail)
+GET http://localhost:8080/admin.html
+Authorization: Basic user:user
+
+### Test unauthorized access to superuser page (should fail)
+GET http://localhost:8080/superuser.html
+Authorization: Basic admin:admin
