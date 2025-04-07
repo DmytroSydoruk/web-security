@@ -7,8 +7,10 @@ package chnu.edu.assignment.config;
     @version 1.0.0
     @since  24.03.2025 - 21.05       
 */
+import org.springframework.aop.Advisor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.security.authorization.method.AuthorizationManagerBeforeMethodInterceptor;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
@@ -23,6 +25,11 @@ import org.springframework.security.web.SecurityFilterChain;
 @Configuration
 @EnableWebSecurity
 public class SecurityConfig {
+
+
+    public static Advisor preAuthorizeMethodInterceptor(){
+        return AuthorizationManagerBeforeMethodInterceptor.preAuthorize();
+    }
 
     @Bean
     public static PasswordEncoder passwordEncoder() {

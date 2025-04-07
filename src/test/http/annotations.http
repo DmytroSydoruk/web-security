@@ -1,0 +1,39 @@
+### Test USER role endpoint
+GET http://localhost:8080/api/v1/posts/hello/user
+Authorization: Basic admin admin
+Accept: application/json
+
+### Test ADMIN role endpoint
+GET http://localhost:8080/api/v1/posts/hello/admin
+Authorization: Basic admin admin
+Accept: application/json
+
+### Test SUPERADMIN role endpoint
+GET http://localhost:8080/api/v1/posts/hello/superadmin
+Authorization: Basic admin admin
+Accept: application/json
+
+### Test endpoint requiring ADMIN or SUPERADMIN role
+GET http://localhost:8080/api/v1/posts/hello/admin-role
+Authorization: Basic admin admin
+Accept: application/json
+
+### Test endpoint allowing USER, ADMIN, or SUPERADMIN role
+GET http://localhost:8080/api/v1/posts/hello/role
+Authorization: Basic admin admin
+Accept: application/json
+
+### Test regular endpoint without role restrictions
+GET http://localhost:8080/api/v1/posts/hello
+Authorization: Basic admin admin
+Accept: application/json
+
+### Test with wrong credentials
+GET http://localhost:8080/api/v1/posts/hello/admin
+Authorization: Basic admin wrongpassword
+Accept: application/json
+
+### Test with wrong username
+GET http://localhost:8080/api/v1/posts/hello/admin
+Authorization: Basic wrongusername admin
+Accept: application/json

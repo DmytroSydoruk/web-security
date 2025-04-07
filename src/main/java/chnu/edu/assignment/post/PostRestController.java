@@ -1,6 +1,7 @@
 package chnu.edu.assignment.post;
 
 import lombok.AllArgsConstructor;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -47,4 +48,36 @@ public class PostRestController {
     public String hello() { 
         return "Hello, World!";
     }
+
+    @PreAuthorize("hasRole('USER')")
+    @GetMapping("/hello/user")
+    public String helloUser() {
+        return "Hello, USER!";
+    }
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/hello/admin")
+    public String helloAdmin() {
+        return "Hello, ADMIN!";
+    }
+
+    @PreAuthorize("hasRole('SUPERADMIN')")
+    @GetMapping("/hello/superadmin")
+    public String helloSuperAdmin() {
+        return "Hello, SUPERADMIN!";
+    }
+
+
+    @PreAuthorize("hasAnyRole('SUPERADMIN, 'ADMIN')")
+    @GetMapping("/hello/admin-role")
+    public String helloAdminRole() {
+        return "Hello, SUPERADMIN or ADMIN!";
+    }
+
+    @PreAuthorize("hasAnyRole('USER','SUPERADMIN, 'ADMIN')")
+    @GetMapping("/hello/role")
+    public String helloAuthorizedUser() {
+        return "Hello, USER, SUPERADMIN or ADMIN!";
+    }
+
 }
